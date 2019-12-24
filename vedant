@@ -1,0 +1,90 @@
+select * from jobs;
+
+select * from jobs where MIN_SALARY>10000;
+
+select * from employees;
+
+select FIRST_NAME,HIRE_DATE from employees where HIRE_DATE BETWEEN ('01-jan-2002') and ('31-dec-2005');
+
+select FIRST_NAME,HIRE_DATE from employees,departments where department_name='IT' or department_name='sales';
+
+select FIRST_NAME from employees where hire_date>to_date('01-jan-90');
+
+select * from employees where EMPLOYEE_ID='150' or EMPLOYEE_ID='160';
+
+select FIRST_NAME,SALARY,COMMISSION_PCT,HIRE_DATE from employees where SALARY<10000;
+
+select * from jobs;
+
+select JOB_TITLE,(MAX_SALARY-MIN_SALARY) from jobs where MAX_SALARY between ('10000') and ('20000')
+
+select FIRST_NAME,SALARY,round(SALARY,-3) from employees
+
+select * from jobs order by JOB_TITLE
+
+select * from employees where FIRST_NAME like 'S%' or LAST_NAME like 'S%'
+
+select EMPLOYEE_ID from JOB_HISTORY where START_DATE like '%JUL%';
+
+select * from employees where (COMMISSION_PCT='NULL') and (salary between ('5000') and ('10000')) and (DEPARTMENT_ID='30')
+
+select * from job_history
+
+select FIRST_NAME,To_CHAR(add_months(START_DATE,1),'dd-mon-yyyy')"next month" from employees e,JOB_HISTORY j
+where e.EMPLOYEE_ID=j.EMPLOYEE_ID
+
+select e.FIRST_NAME,j.round((END_DATE-START_DATE)/365,1)"exp" from employees e,JOB_HISTORY j
+where e.EMPLOYEE_ID=j.EMPLOYEE_ID
+
+select EMPLOYEE_ID,FIRST_NAME from employees where HIRE_DATE between ('01-jan-98') and ('31-dec-98')
+
+select initcap(FIRST_NAME),initcap(LAST_NAME) from employees 
+
+SELECT job_title, SUBSTR(job_title,1,INSTR(job_title, ' ')-1) from jobs
+
+SELECT first_name, last_name FROM employees WHERE INSTR(last_name,'b') > 3;
+
+select upper(FIRST_NAME),lower(EMAIL) from employees where upper(FIRST_NAME)=lower(EMAIL)
+  
+select * from job_history
+
+select * from EMPLOYEES where TO_CHAR(HIRE_DATE,'YYYY')=TO_CHAR(SYSDATE, 'YYYY')
+
+select SYSDATE - to_date('01-jan-2011') from dual
+
+SELECT TO_CHAR(HIRE_DATE,'MM'), COUNT (*) FROM EMPLOYEES 
+WHERE TO_CHAR(HIRE_DATE,'YYYY')= TO_CHAR(SYSDATE,'YYYY') GROUP BY TO_CHAR(HIRE_DATE,'MM')
+
+select MANAGER_ID,count(EMPLOYEE_ID) from employees group by MANAGER_ID
+
+select EMPLOYEE_ID,END_DATE from JOB_HISTORY
+
+SELECT COUNT(*) FROM EMPLOYEES WHERE TO_CHAR(HIRE_DATE,'DD') > 15
+
+select COUNTRY_ID,count(CITY) from LOCATIONS group by COUNTRY_ID
+
+select * from employees
+
+SELECT DEPARTMENT_ID, AVG(SALARY) FROM EMPLOYEES 
+WHERE COMMISSION_PCT IS NOT NULL GROUP BY DEPARTMENT_ID
+
+SELECT JOB_ID, COUNT(*), SUM(SALARY), MAX(SALARY)-MIN(SALARY) SALARY FROM EMPLOYEES GROUP BY JOB_ID
+
+select JOB_ID, AVG(SALARY) from EMPLOYEES 
+GROUP BY JOB_ID 
+having AVG(SALARY)>10000
+
+SELECT TO_CHAR(HIRE_DATE,'YYYY') FROM EMPLOYEES 
+GROUP BY TO_CHAR(HIRE_DATE,'YYYY') 
+HAVING COUNT(EMPLOYEE_ID) > 10
+
+SELECT DEPARTMENT_ID FROM EMPLOYEES 
+WHERE COMMISSION_PCT IS NOT NULL
+GROUP BY DEPARTMENT_ID 
+HAVING COUNT(COMMISSION_PCT)>5
+
+UPDATE EMPLOYEES SET SALARY=8000 WHERE EMPLOYEE_ID='115' AND SALARY < 6000
+
+SELECT * FROM EMPLOYEES
+
+INSERT INTO EMPLOYEES VALUES(999,'Vedant','Belsare','Vedu',123.456.7890,28-DEC-2019,'IT_PROG',12500)
